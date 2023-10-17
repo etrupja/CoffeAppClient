@@ -109,3 +109,47 @@ form#orderForm div{
 
 
 /* END: Order Page */
+
+
+/* Start: Order content */
+table#ordersTbl{
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+table#ordersTbl td, table#ordersTbl th{
+    text-align: left;
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+
+table#ordersTbl th{
+    background-color: #f2f2f2;
+}
+
+
+table#ordersTbl tr:nth-child(even){background-color: #f2f2f2;}
+
+
+button#editBtn, button#removeBtn {
+    margin: 2px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+ 
+  button#editBtn {
+    background-color: #007BFF;
+    color: white;
+  }
+ 
+  button#removeBtn {
+    background-color: #FF0000;
+    color: white;
+  }
+ 
+
+
+/* End: Order content */
