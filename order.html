@@ -24,30 +24,32 @@
         <div>
             <label for="fullName">Full name</label>
             <input type="text" id="fullName" name="fullName" placeholder="Your name">
-            <span></span>
+            <span id="fullNameSpn"></span>
         </div>
 
         <div>
             <label for="email">Email address</label>
             <input type="email" id="email" name="email" placeholder="Your email address">
-            <span></span>
+            <span id="emailSpn"></span>
         </div>
 
         <div>
             <label for="description">Describe your order</label>
             <textarea id="description" name="description"></textarea>
-            <span></span>
+            <span id="descriptionSpn"></span>
         </div>
 
         <div>
-            <button id="submitBtn">Submit Order</button>
+            <button id="submitBtn" onclick="validateAndSubmit(event)">Submit Order</button>
         </div>
         
     </form>
 
 
     <footer>
-        <span>&copy; 2023 Coffee Shop. All rights reserved.</span>
+        <span>&copy; <span id="currentYear"></span> Coffee Shop. All rights reserved.</span>
     </footer>
+
+    <script src="assets/scripts/custom.js"></script>
 </body>
 </html>
