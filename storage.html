@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Storage triggers</h1>
+    <p>LocalStorage data: <span id="localStorageOutput"></span></p>
+    <p>SessionStorage data: <span id="sessionStorageOutput"></span></p>
+
+    <script>
+        // Set items .. Then remove this code...
+        // localStorage.setItem('localStorageTest', 'This is data saved in LocalStorage.');
+        // sessionStorage.setItem('sessionStorageTest', 'This is data saved in SessionStorage.');
+
+        // Get items
+        const localStorageData = localStorage.getItem('localStorageTest');
+        const sessionStorageData = sessionStorage.getItem('sessionStorageTest');
+
+        // Display items
+        document.getElementById('localStorageOutput').innerText = localStorageData;
+        document.getElementById('sessionStorageOutput').innerText = sessionStorageData;
+    </script>
+</body>
+</html>
