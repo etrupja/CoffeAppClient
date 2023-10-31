@@ -1,14 +1,21 @@
-const orders = [
-    {
-        fullName: 'Flori Lastname',
-        email:'flori@epoka.edu.al',
-        description: 'Flori order description'
-    },
-    {
-        fullName: 'Emer Mbiemer',
-        email:'emer@epoka.edu.al',
-        description: 'Emer order description'
+class Order{
+    constructor(_fullName, _email, _description){
+
+        if(arguments.length != 3)
+        {
+            throw new Error("Please, provide 3 properties")
+        }
+
+        this.fullName = _fullName;
+        this.email = _email;
+        this.description = _description;
     }
+}
+
+const orders = [
+    // new Order('Flori Lastname','flori@epoka.edu.al','Flori order description', '4th param'),
+    new Order('Flori Lastname','flori@epoka.edu.al','Flori order description'),
+    new Order('Emer Mbiemer', 'emer@epoka.edu.al','Emer order description')
 ];
 
 //Get Table -> <tbody>
