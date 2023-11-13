@@ -145,7 +145,7 @@ button#editBtn, button#removeBtn {
     color: white;
   }
  
-  button#removeBtn {
+  button#removeBtn, button#confirmBtn{
     background-color: #FF0000;
     color: white;
   }

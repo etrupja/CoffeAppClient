@@ -52,12 +52,25 @@ function validateAndSubmit(event){
 function handleSubmit(_fullName, _email, _description){
     // Create Object
     var newOrder = {
+        id: Math.floor(Math.random() * 1000000), // Random number between 0 and 1000000
         fullName: _fullName,
         email: _email,
         description: _description
     }
 
     console.log('newOrder Object = ', newOrder);
+
+    // Retrieve existing orders from localStorage, or initialize an empty array if none exist
+    var existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
+
+    // Add the new order to the array
+    existingOrders.push(newOrder);
+
+    // Update localStorage with the new array
+    localStorage.setItem('orders', JSON.stringify(existingOrders));
+
+    console.log('New order added:', newOrder);
+    console.log('Updated orders:', existingOrders);
 }
 
 $(document).ready(function(){
