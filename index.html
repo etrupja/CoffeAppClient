@@ -37,6 +37,27 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="assets/scripts/custom.js"></script>
-    
+
+    <script>
+        const settings = {
+            async: true,
+            crossDomain: true,
+            url: 'https://google-translate1.p.rapidapi.com/language/translate/v2/detect',
+            method: 'POST',
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded',
+                'Accept-Encoding': 'application/gzip',
+                'X-RapidAPI-Key': '4899b5a1f2msh3594b57d4f697f7p185222jsne688960537df',
+                'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
+            },
+            data: {
+                q: 'Ky eshte nje shembull'
+            }
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+        });
+    </script>
 </body>
 </html>
