@@ -52,12 +52,24 @@ function validateAndSubmit(event){
 function handleSubmit(_fullName, _email, _description){
     // Create Object
     var newOrder = {
+        id: Math.floor(Math.random()*1000),
         fullName: _fullName,
         email: _email,
         description: _description
     }
 
     console.log('newOrder Object = ', newOrder);
+
+    //Retreive items from localstorage
+    var existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
+
+    //Add order to existingOrders array
+    existingOrders.push(newOrder);
+
+    //Update localstorage with new items
+    localStorage.setItem('orders', JSON.stringify(existingOrders));
+
+    alert('Order added to localstorage');
 }
 
 $(document).ready(function(){
