@@ -18,10 +18,39 @@ class Order{
 //     new Order(2, 'Emer Mbiemer', 'emer@epoka.edu.al','Emer order description')
 // ];
 
-var orders = JSON.parse(localStorage.getItem('orders')) || [];
+// var orders = JSON.parse(localStorage.getItem('orders')) || [];
+var orders = [];
 
 console.log('orders (before parse) = ', localStorage.getItem('orders'));
 console.log('orders (after parse) = ', orders);
+
+// START: Get Data from API
+const settings = {
+    async: true,
+    crossDomain: true,
+    url: 'http://127.0.0.1:80/coffeshopapi/api.php',
+    method: 'GET',
+    headers: {
+        'content-type': 'application/json',
+    }
+};
+
+$.ajax(settings).done(function (response) {
+    console.log('Ajax response = ', response);
+    // Assuming response is already an array. If not, use JSON.parse(response).
+    // orders = JSON.parse(response);
+
+    orders = response;
+    // console.log('Ajax response [JSON.parse] = ', JSON.parse(response));
+    console.log('Ajax response [orders] = ', orders);
+    // localStorage.setItem('orders', JSON.stringify(orders))
+
+    populateTable();
+}).fail(function (jqXHR, textStatus, errorThrown) {
+    console.error('Error: ' + textStatus, errorThrown);
+});
+// END: Get Data from API
+
 
 //Get Table -> <tbody>
 const ordersTableBody = $("#ordersTbl tbody");
@@ -46,7 +75,7 @@ function populateTable(){
     });
 }
 
-populateTable();
+// populateTable();
 
 $(ordersTableBody).on('click', "#editBtn", function(){
     const orderId = $(this).data('order-id');
