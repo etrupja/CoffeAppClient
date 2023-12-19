@@ -13,15 +13,30 @@ class Order{
     }
 }
 
-// const orders = [
-//     new Order(1, 'Flori Lastname','flori@epoka.edu.al','Flori order description'),
-//     new Order(2, 'Emer Mbiemer', 'emer@epoka.edu.al','Emer order description')
-// ];
+var orders = [];
 
-var orders = JSON.parse(localStorage.getItem('orders')) || [];
+console.log('Orders (before request) = ', orders);
 
-console.log('orders (before parse) = ', localStorage.getItem('orders'));
-console.log('orders (after parse) = ', orders);
+//Request orders data from the api endpoint
+const settings = {
+    async: true,
+    crossDomain: true,
+    url: 'http://localhost/coffeshopapi/api.php',
+    method: 'GET',
+    headers: {
+        'content-type': 'application/json'
+    }
+};
+
+$.ajax(settings).done(function (response) {
+    console.log(response);
+
+    orders = response;
+
+    console.log('Orders (after request response) = ', orders);
+
+    populateTable();
+});
 
 //Get Table -> <tbody>
 const ordersTableBody = $("#ordersTbl tbody");
@@ -46,7 +61,7 @@ function populateTable(){
     });
 }
 
-populateTable();
+
 
 $(ordersTableBody).on('click', "#editBtn", function(){
     const orderId = $(this).data('order-id');
