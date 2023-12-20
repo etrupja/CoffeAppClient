@@ -61,15 +61,31 @@ function handleSubmit(_fullName, _email, _description){
     console.log('newOrder Object = ', newOrder);
 
     //Retreive items from localstorage
-    var existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    // var existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
 
-    //Add order to existingOrders array
-    existingOrders.push(newOrder);
+    // //Add order to existingOrders array
+    // existingOrders.push(newOrder);
 
-    //Update localstorage with new items
-    localStorage.setItem('orders', JSON.stringify(existingOrders));
+    // //Update localstorage with new items
+    // localStorage.setItem('orders', JSON.stringify(existingOrders));
 
-    alert('Order added to localstorage');
+    
+    //Request orders data from the api endpoint
+    const settings = {
+        async: true,
+        crossDomain: true,
+        url: 'http://localhost/coffeshopapi/api.php',
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        data: JSON.stringify(newOrder)
+    };
+
+    $.ajax(settings).done(function (response) {
+        alert('Order added to json file');
+    });
+
 }
 
 $(document).ready(function(){
