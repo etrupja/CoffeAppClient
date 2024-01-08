@@ -104,27 +104,32 @@ $("#confirmBtn").click(function(){
 
     //1. Get order id of the item to be removed
     var orderId = localStorage.getItem('itemToBeRemovedId');
+    
+    //parse orderid to int
+    // var orderId = parseInt(orderIdStr);
+    var url = 'http://localhost/coffeshopapi/api.php?id=' + parseInt(orderId);
 
-    console.log('orderId from localstorage = ', orderId);
+    var settings = {
+        async: true,
+        crossDomain: true,
+        url: url,
+        method: 'DELETE',
+        headers: {
+            'content-type': 'application/json'
+        }
+    };
 
-    //2. Get from localstorage or use order from above (orders)
-    const index = orders.findIndex(order => order.id == orderId);
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        alert('Order removed successfully');
 
-    console.log('all orders = ', orders);
-    console.log('index == ', index);
+    });
 
 
-    if(index !== -1){
-        orders.splice(index,1);
 
-        localStorage.setItem('orders', JSON.stringify(orders))
-    } else {
-        console.log('Order no found')
-    }
- 
     $("#removeModal").hide();
-    location.reload();
-
+    // location.reload();
+    // alert('Order removed successfully');
 })
 
 function detectTextLanguage(textToBeDetected){
