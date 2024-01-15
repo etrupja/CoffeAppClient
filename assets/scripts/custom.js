@@ -74,7 +74,7 @@ function handleSubmit(_fullName, _email, _description){
     const settings = {
         async: true,
         crossDomain: true,
-        url: 'http://localhost/coffeshopapi/api.php',
+        url: 'https://localhost:7084/api/Orders',
         method: 'POST',
         headers: {
             'content-type': 'application/json'

@@ -21,7 +21,7 @@ console.log('Orders (before request) = ', orders);
 const settings = {
     async: true,
     crossDomain: true,
-    url: 'http://localhost/coffeshopapi/api.php',
+    url: 'https://localhost:7084/api/Orders',
     method: 'GET',
     headers: {
         'content-type': 'application/json'
@@ -107,7 +107,7 @@ $("#confirmBtn").click(function(){
     
     //parse orderid to int
     // var orderId = parseInt(orderIdStr);
-    var url = 'http://localhost/coffeshopapi/api.php?id=' + parseInt(orderId);
+    var url = 'https://localhost:7084/api/Orders/' + parseInt(orderId);
 
     var settings = {
         async: true,
