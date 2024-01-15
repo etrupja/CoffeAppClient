@@ -60,16 +60,6 @@ function handleSubmit(_fullName, _email, _description){
 
     console.log('newOrder Object = ', newOrder);
 
-    //Retreive items from localstorage
-    // var existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
-
-    // //Add order to existingOrders array
-    // existingOrders.push(newOrder);
-
-    // //Update localstorage with new items
-    // localStorage.setItem('orders', JSON.stringify(existingOrders));
-
-    
     //Request orders data from the api endpoint
     const settings = {
         async: true,
@@ -88,9 +78,21 @@ function handleSubmit(_fullName, _email, _description){
 
 }
 
-$(document).ready(function(){
-    $("#submitBtn").click(validateAndSubmit)
-})
+$(document).ready(function() {
+    $("#submitBtn").click(validateAndSubmit);
+
+    const authLink = document.getElementById('authLink');
+    if (localStorage.getItem('token')) {
+        authLink.innerHTML = '<a href="#" id="logoutLink">Log Out</a>';
+        $('#logoutLink').click(function() {
+            localStorage.removeItem('token');
+            window.location.href = 'login.html';
+        });
+    } else {
+        authLink.innerHTML = '<a href="login.html">Log In</a>';
+    }
+});
+
 
 //END - ADD EVENT LISTENER
 

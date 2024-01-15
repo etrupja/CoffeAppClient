@@ -18,25 +18,39 @@ var orders = [];
 console.log('Orders (before request) = ', orders);
 
 //Request orders data from the api endpoint
+const token = localStorage.getItem('token'); // Replace 'yourTokenKey' with the actual key
 const settings = {
     async: true,
     crossDomain: true,
     url: 'https://localhost:7084/api/Orders',
     method: 'GET',
     headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization': 'Bearer ' + token
     }
 };
 
+
+//Update with error handling
 $.ajax(settings).done(function (response) {
     console.log(response);
-
     orders = response;
-
     console.log('Orders (after request response) = ', orders);
-
     populateTable();
+}).fail(function (jqXHR, textStatus, errorThrown) {
+    console.log('Error = ', errorThrown);
+    console.log('Text Status = ', textStatus);
+    console.log('jqXHR = ', jqXHR);
+
+    // Check for a 401 Unauthorized response
+    if (jqXHR.status === 401) {
+        alert('Unauthorized: Redirecting to login');
+        window.location.href = 'login.html';
+    } else {
+        alert('Error occurred while fetching orders');
+    }
 });
+
 
 //Get Table -> <tbody>
 const ordersTableBody = $("#ordersTbl tbody");
